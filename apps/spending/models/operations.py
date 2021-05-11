@@ -17,13 +17,17 @@ class OperationKind(str, Enum):
     OUTCOME = "outcome"
 
 
-class Operation(BaseModel):
-    """схема операция"""
-    id: int
+class OperationBase(BaseModel):
+    """базовый класс с общими полями при создании и опображении орерации"""
     date: str
-    kind: OperationKind   # набор допустимых значений
+    kind: OperationKind  # набор допустимых значений
     amount: Decimal
     description: Optional[str]
+
+
+class OperationList(OperationBase):
+    """модель вывода списка операций (схема операция)"""
+    id: int
 
     class Config:
         """
@@ -31,3 +35,8 @@ class Operation(BaseModel):
         а из моделей наших моделей орм
         """
         orm_mode = True
+
+
+class OperationCreate(OperationBase):
+    """создание операции"""
+    pass    # pass так как новый полей нет, в срасненнии с OperationBase
