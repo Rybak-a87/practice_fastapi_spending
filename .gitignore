@@ -1,0 +1,4 @@
+.idea/
+fastapi_env/
+.env
+*.pyc
