@@ -9,7 +9,7 @@ from enum import Enum
 from pydantic import BaseModel
 
 
-class OperationKind(str, Enum):
+class OperationKindEnum(str, Enum):
     """набор допустимых значений для kind"""
     # вариант - 1
     INCOME = "income"
@@ -17,15 +17,15 @@ class OperationKind(str, Enum):
     OUTCOME = "outcome"
 
 
-class OperationBase(BaseModel):
+class OperationBaseModel(BaseModel):
     """базовый класс с общими полями при создании и опображении орерации"""
     date: str
-    kind: OperationKind  # набор допустимых значений
+    kind: OperationKindEnum  # набор допустимых значений
     amount: Decimal
     description: Optional[str]
 
 
-class OperationList(OperationBase):
+class OperationListModel(OperationBaseModel):
     """модель вывода списка операций (схема операция)"""
     id: int
 
@@ -37,6 +37,11 @@ class OperationList(OperationBase):
         orm_mode = True
 
 
-class OperationCreate(OperationBase):
+class OperationCreateModel(OperationBaseModel):
     """создание операции"""
     pass    # pass так как новый полей нет, в срасненнии с OperationBase
+
+
+class OperationUpdateModel(OperationBaseModel):
+    """изменение операции"""
+    pass
