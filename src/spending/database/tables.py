@@ -9,7 +9,7 @@ from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
 
 
-class User(Base):
+class UserDB(Base):
     __tablename__ = "user"
     id = sa.Column(sa.Integer, primary_key=True, unique=True)
     email = sa.Column(sa.Text, unique=True)
@@ -20,7 +20,7 @@ class User(Base):
         return f"{self.id}"
 
 
-class Operation(Base):
+class OperationDB(Base):
     __tablename__ = "operations"    # имя таблицы
     id = sa.Column(sa.Integer, primary_key=True, unique=True)
     user_id = sa.Column(sa.Integer, sa.ForeignKey("user.id"))    # внешний ключ на таблицу user

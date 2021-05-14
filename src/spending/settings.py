@@ -10,6 +10,9 @@ class Settings(BaseSettings):
     server_port: int = 8000    # порт старта сервера
     database_url: str = "sqlite:///./database.sqlite3"    # подключение к базе данных
 
+    jwt_secret: str = ""    # секретный ключ jwt
+    jwt_algorithm: str = "HS256"    # алгоритм jwt
+    jwt_expiration: int = 3600    # время существования токена (в секундах)
 
 # чтение переменных из .env файла (дотэнв файла)
 settings = Settings(

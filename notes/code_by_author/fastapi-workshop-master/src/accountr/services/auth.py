@@ -29,6 +29,10 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl='/auth/sign-in/')
 
 
 def get_current_user(token: str = Depends(oauth2_scheme)) -> models.User:
+    """
+    для установки зависимости от пользователя
+    (доступ авторизированному пользователю)
+    """
     return AuthService.verify_token(token)
 
 

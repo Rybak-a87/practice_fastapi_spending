@@ -17,7 +17,7 @@ class UserModel(BaseUserModel):
         orm_mode = True
 
 
-class Token(BaseModel):
+class TokenModel(BaseModel):
     """
     модель с токеном
     """
