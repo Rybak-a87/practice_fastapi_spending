@@ -14,6 +14,7 @@ class Settings(BaseSettings):
     jwt_algorithm: str = "HS256"    # алгоритм jwt
     jwt_expiration: int = 3600    # время существования токена (в секундах)
 
+
 # чтение переменных из .env файла (дотэнв файла)
 settings = Settings(
     _env_file=".env",    # чтение переменных из dotenv (.env) файла - установить дополнительно пакет (<python-dotenv>)

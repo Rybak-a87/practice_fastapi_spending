@@ -68,6 +68,19 @@ class OperationsService:
         self.session.commit()    # сохранение в базе данных
         return operation
 
+    def create_many_operations(self, user_id: int, operations_data: List[OperationCreateModel]) -> List[tables.OperationDB]:    # в версии python от 3.9 и выше List из typing можно заменить просто list
+        """создать несколько операций сразу"""
+        operations = [
+            tables.OperationDB(
+                **operation_data.dict(),
+                user_id=user_id
+            )
+            for operation_data in operations_data
+        ]
+        self.session.add_all(operations)    # добавление в сессию список (несколько) объектов
+        self.session.commit()
+        return operations
+
     def update(self, user_id: int,  operation_id: int, operation_data: OperationUpdateModel) -> tables.OperationDB:
         """обновление-изменение операции"""
         operation = self._get_operation(user_id, operation_id)
