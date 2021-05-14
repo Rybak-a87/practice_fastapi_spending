@@ -16,6 +16,7 @@ from ..services.auth import get_current_user
 # роутер operations
 router = APIRouter(
     prefix="/operations",    # путь для обработчиков
+    tags=["группа операции"]    # группировка ендпоинтов
 )
 
 
@@ -27,6 +28,10 @@ def get_operations(
     user: UserModel = Depends(get_current_user),    # доступ только авторизированному пользователь
     service: OperationsService = Depends(),    # внедрение зависимостей
 ):
+    """
+    ## Описание ендпоинта get_operations поддерживает формат markdown
+    \f
+    """
     return service.get_list(user_id=user.id, kind=kind)    # fastapi автоматически приобразует этот список в модели pydantic из-за response_model=
 
 
@@ -37,6 +42,10 @@ def create_operation(
         user: UserModel = Depends(get_current_user),
         service: OperationsService = Depends(),
 ):
+    """
+    ## Описание ендпоинта create_operation поддерживает формат markdown
+    \f
+    """
     return service.create(user_id=user.id, operation_data=operation_data)
 
 
@@ -47,6 +56,10 @@ def get_operation_detail(
         user: UserModel = Depends(get_current_user),
         service: OperationsService = Depends()
 ):
+    """
+    ## Описание ендпоинта get_operation_detail поддерживает формат markdown
+    \f
+    """
     return service.get_detail(user_id=user.id, operation_id=operation_id)
 
 
@@ -58,6 +71,10 @@ def update_operation(
         user: UserModel = Depends(get_current_user),
         service: OperationsService = Depends()
 ):
+    """
+    ## Описание ендпоинта update_operation поддерживает формат markdown
+    \f
+    """
     return service.update(user_id=user.id, operation_id=operation_id, operation_data=operation_data)
 
 
@@ -68,5 +85,9 @@ def delete_operation(
         user: UserModel = Depends(get_current_user),
         service: OperationsService = Depends()
 ):
+    """
+    ## Описание ендпоинта delete_operation поддерживает формат markdown
+    \f
+    """
     service.delete(user_id=user.id, operation_id=operation_id)
     return Response(status_code=status.HTTP_204_NO_CONTENT)    # операция удаления возвращает код 204

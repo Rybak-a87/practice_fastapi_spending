@@ -8,7 +8,7 @@ class Settings(BaseSettings):
     """описания настроек"""
     server_host: str = "127.0.0.1"    # хост старта сервера
     server_port: int = 8000    # порт старта сервера
-    database_url: str = "sqlite:///./database.sqlite3"    # подключение к базе данных
+    database_url: str = "sqlite:///./db_spending.sqlite3"    # подключение к базе данных
 
     jwt_secret: str = ""    # секретный ключ jwt
     jwt_algorithm: str = "HS256"    # алгоритм jwt

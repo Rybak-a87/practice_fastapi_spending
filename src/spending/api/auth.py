@@ -6,6 +6,7 @@ from ..services.auth import AuthService, get_current_user
 
 router = APIRouter(
     prefix="/auth",
+    tags=["группа авторизации"]
 )
 
 
@@ -15,7 +16,8 @@ def sing_up(
         service: AuthService = Depends()
 ):
     """
-    Регистрация
+    ## Описание ендпоинта Регистрация поддерживает формат markdown
+    \f
     """
     return service.register_new_user(user_data)
 
@@ -26,7 +28,8 @@ def sing_in(
         service: AuthService = Depends(),
 ):
     """
-    Авторизация
+    ## Описание ендпоинта Авторизация поддерживает формат markdown
+    \f
     """
     return service.authenticate_user(
         username=form_data.username,
@@ -37,6 +40,7 @@ def sing_in(
 @router.get("/user", response_model=UserModel)
 def get_user(user: UserModel = Depends(get_current_user)):
     """
-    Данные пользователя
+    ## Описание ендпоинта Данные пользователя поддерживает формат markdown
+    \f
     """
     return user

@@ -13,7 +13,8 @@ from ..services.reports import ReportsService
 
 
 router = APIRouter(
-    prefix="/reports"
+    prefix="/reports",
+    tags=["группа работы с файлами csv"]
 )
 
 
@@ -24,6 +25,9 @@ def import_csv(
         user: UserModel = Depends(get_current_user),
         reports_service: ReportsService = Depends()
 ):
+    """
+    ## Описание ендпоинта import_csv поддерживает формат markdown
+    """
     # # работа не в фоне
     # reports_service.import_csv(
     #     user_id=user.id,
@@ -43,6 +47,9 @@ def export_csv(
         user: UserModel = Depends(get_current_user),
         reports_service: ReportsService = Depends()
 ):
+    """
+       ## Описание ендпоинта export_csv поддерживает формат markdown
+    """
     report = reports_service.export_csv(user_id=user.id)
     return StreamingResponse(    # асинхронно передает report клиенту
         report,
